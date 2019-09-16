@@ -20,7 +20,7 @@ class RegistrationController extends Controller
         $activation=Activation::create($user);
          $role=Sentinel::findRoleBySlug('Admin');
          $role->users()->attach($user);
-$this->sendMail($user,$activation->code);
+        $this->sendMail($user,$activation->code);
         // dd($user);
         return \redirect('/login');
     }

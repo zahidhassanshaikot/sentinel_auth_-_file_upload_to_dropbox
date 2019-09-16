@@ -11,9 +11,13 @@ Route::group(['middleware'=>'visitor'],function(){
     Route::get('login','LoginController@login')->name('login');
     Route::post('login','LoginController@postlogin');
 
+    Route::get('/forgot-password','ForgotPasswordController@forgotPassword');
+    Route::post('/forgot-password','ForgotPasswordController@postForgotPassword');
+    Route::get('reset/{email}/{activationCode}','ForgotPasswordController@resetPassword');
     
 });
 Route::post('logout','LoginController@logout');
+
     
 Route::get('earning','AdminController@earning')->middleware('admin');
 Route::get('activation/{email}/{activationCode}','ActivationController@activation');

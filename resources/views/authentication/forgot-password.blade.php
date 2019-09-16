@@ -4,21 +4,21 @@
 <div class="row">
     <div class="col-md-12">
 
-        <form id="candidatedata" class="form-horizontal" method="POST" role="form" action="/login">
+        <form id="candidatedata" class="form-horizontal" method="POST" role="form" action="/forgot-password">
 @csrf
 
             <div class="row">
                 <div class="col-md-offset-2 col-md-8">
                     <div class="panel">
                         <div class="panel-heading custom-header-panel">
-                            <h3 class="panel-title roboto">Login</h3>
+                            <h3 class="panel-title roboto">Forgot Password</h3>
                         </div>
                         <div class="panel-body">
-@if(session('error'))
-<div class="alert alert-danger">
-{{session('error')}}
-</div>
-@endif
+                            @if(session('success'))
+                            <div class="alert alert-success">
+                            {{session('success')}}
+                            </div>
+                            @endif
      
                             <div class="form-group">
                                 <label class="col-sm-4 control-label" for="name">Email <span class="requerido"> *</span></label>
@@ -28,22 +28,11 @@
                             </div>
                         
                
-                        
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label" for="password">Password <span class="requerido"> *</span></label>
-                                <div class="col-sm-8">
-                                    <input type="password" class="form-control" name="password" id="password" value="" oninvalid="this.setCustomValidity('Password requerido')" oninput="setCustomValidity('')" required="" maxlength="70">
-                                </div>
-                            </div>
-                        
                
 
-                            <!--Fin datos personales-->
+                      
                             <div class="form-group text-center">
-                                <a href="/forgot-password" class="">Forgot Password ?</a>
-                            </div>
-                            <div class="form-group text-center">
-                                <button type="submit" id="submit_btn" class="btn btn-orange-md roboto">Login</button>
+                                <button type="submit" id="submit_btn" class="btn btn-orange-md roboto">Send Code</button>
                             </div>
                         </div>
                     </div>
