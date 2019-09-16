@@ -14,6 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('register','RegistrationController@register');
+Route::post('register','RegistrationController@postRegister');
+
+Route::get('login','LoginController@login');
+Route::post('login','LoginController@postlogin');
+
+
 Route::post('file-upload','FileUploadController@index')->name('file-upload');
 Route::get('/upload-to-dropbox','DropboxController@uploadToDropbox');
+Route::post('/upload_to_dropbox','DropboxController@uploadToDropboxFile');
 Route::post('/upload_to_dropbox','DropboxController@uploadToDropboxFile');
