@@ -12,7 +12,11 @@ class LoginController extends Controller
     }
     public function postLogin(Request $request){
         $user=Sentinel::authenticate($request->all());
-        return $user;
+        // dd($user);
         return view('authentication.login');
+    }
+    public function logout(){
+        Sentinel::logout();
+        return redirect('/login');
     }
 }
