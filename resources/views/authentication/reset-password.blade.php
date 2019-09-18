@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-12">
 
-        <form id="candidatedata" class="form-horizontal" method="POST" role="form" action="/forgot-password">
+        <form id="candidatedata" class="form-horizontal" method="POST" role="form" action="">
 @csrf
 
             <div class="row">
@@ -24,6 +24,15 @@
                             {{session('error')}}
                             </div>
                             @endif
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
      
                             <div class="form-group">
                                 <label class="col-sm-4 control-label" for="name">Password <span class="requerido"> *</span></label>
@@ -34,7 +43,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label" for="name">Confirm Password <span class="requerido"> *</span></label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="password_confirmation" id="password_confirmation" value="" oninvalid="this.setCustomValidity('First Name requerido')" oninput="setCustomValidity('')" required="" maxlength="70">
+                                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" value="" oninvalid="this.setCustomValidity('First Name requerido')" oninput="setCustomValidity('')" required="" maxlength="70">
                                 </div>
                             </div>
                         

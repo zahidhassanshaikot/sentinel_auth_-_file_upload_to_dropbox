@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+// use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cartalyst\Sentinel\Users\EloquentUser;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+// class User extends Authenticatable
+class User extends EloquentUser
 {
     use Notifiable;
 
@@ -16,7 +18,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'email',
+        'password',
+        'last_name',
+        'first_name',
+        'permissions',
+        'location',
     ];
 
     /**
@@ -36,4 +43,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public static function byEmail($email){
+        return static::whereEmail($email)->first();
+
+    }
 }

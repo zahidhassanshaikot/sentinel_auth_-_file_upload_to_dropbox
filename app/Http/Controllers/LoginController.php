@@ -13,8 +13,16 @@ class LoginController extends Controller
         return view('authentication.login');
     }
     public function postLogin(Request $request){
+
+        // return $request->all();
 try{
-        if(Sentinel::authenticate($request->all())){
+
+
+    $rememberMe=false;
+    if(isset($request->remamber_me)){
+    $rememberMe=true;
+}
+        if(Sentinel::authenticate($request->all(),$rememberMe)){
             // $user=Sentinel::authenticate($request->all());
             // dd($user);
             return redirect('/');

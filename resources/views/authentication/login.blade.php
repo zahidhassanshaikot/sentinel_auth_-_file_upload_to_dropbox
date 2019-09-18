@@ -14,11 +14,16 @@
                             <h3 class="panel-title roboto">Login</h3>
                         </div>
                         <div class="panel-body">
-@if(session('error'))
-<div class="alert alert-danger">
-{{session('error')}}
-</div>
-@endif
+                            @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{session('error')}}
+                            </div>
+                            @endif
+                            @if(session('success'))
+                            <div class="alert alert-success">
+                                {{session('success')}}
+                            </div>
+                            @endif
      
                             <div class="form-group">
                                 <label class="col-sm-4 control-label" for="name">Email <span class="requerido"> *</span></label>
@@ -34,6 +39,12 @@
                                 <div class="col-sm-8">
                                     <input type="password" class="form-control" name="password" id="password" value="" oninvalid="this.setCustomValidity('Password requerido')" oninput="setCustomValidity('')" required="" maxlength="70">
                                 </div>
+                            </div>
+                        
+                            <div class="form-group text-center">
+                                    
+                                    <input type="checkbox" name="remamber_me" > Remamber Me<br>
+                               
                             </div>
                         
                

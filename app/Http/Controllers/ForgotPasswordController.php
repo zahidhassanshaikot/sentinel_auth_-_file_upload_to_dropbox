@@ -16,14 +16,14 @@ class ForgotPasswordController extends Controller
 
     public function postForgotPassword( Request $request){
         $user=User::whereEmail($request->email)->first();
-        $sentinelUser=Sentinel::findById($user->id);
+        // $sentinelUser=Sentinel::findById($user->id);
         // return $user;
         // if(count($user)==0){
         //     return redirect()->back()->with([
         //         'success'=>'Reset Code is send to your mail',
         //     ]);
         // }
-        $remainder=Reminder::exists($sentinelUser) ?: Reminder::create($sentinelUser);
+        $remainder=Reminder::exists($user) ?: Reminder::create($user);
         $this->sendMail($user,$remainder->code);
         // return $request->email;
         return redirect()->back()->with([
@@ -41,11 +41,30 @@ class ForgotPasswordController extends Controller
 
     }
     public function resetPassword($email,$resetCode){
-        $user=User::whereEmail($email)->first();
-        $sentinelUser=Sentinel::findById($user->id);
-        if($reminder=Reminder::exists($sentinelUser,$resetCode)){
+        $user=User::byEmail($email);
+   
+        // $sentinelUser=Sentinel::findById($user->id);
+        if($reminder=Reminder::exists($user,$resetCode)){
         
                 return view('authentication.reset-password');
+            
+        }else{
+            return redirect('/login');
+        }
+
+    }
+    public function PostresetPassword(Request $request, $email, $resetCode){
+        // return $request->all();
+        $this->validate($request,[
+            'password'=>'confirmed|required|min:5|max:10',
+            'password_confirmation'=>'required|min:5|max:10'
+        ]);
+        $user=User::byEmail($email);
+   
+        // $sentinelUser=Sentinel::findById($user->id);
+        if($reminder=Reminder::exists($user,$resetCode)){
+            Reminder::complete($user,$resetCode,$request->password);
+            return redirect('/login')->with('You can login with  new password');
             
         }else{
             return redirect('/login');

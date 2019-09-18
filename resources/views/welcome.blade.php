@@ -13,7 +13,17 @@
                
             </div>
     
-
+            <div class="card-body">
+                    <form action="/post-create" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleInputFile">Title</label>
+                            <input type="text" name="post_title">
+                        </div>
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-default">Create Post</button>
+                    </form>
+               
+            </div>
    
             </div>
    

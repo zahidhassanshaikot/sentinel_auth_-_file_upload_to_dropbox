@@ -22,7 +22,7 @@ class RegistrationController extends Controller
          $role->users()->attach($user);
         $this->sendMail($user,$activation->code);
         // dd($user);
-        return \redirect('/login');
+        return \redirect('/login')->with('success','Check your mail for active your account.');
     }
     private function sendMail($user,$code){
         Mail::send('email.activation',[
