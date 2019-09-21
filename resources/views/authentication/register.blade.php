@@ -5,7 +5,7 @@
     <div class="col-md-12">
 
         <form id="candidatedata" class="form-horizontal" method="POST" role="form" action="/register">
-@csrf
+            @csrf
 
             <div class="row">
                 <div class="col-md-offset-2 col-md-8">
